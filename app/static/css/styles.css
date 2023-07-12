@@ -91,3 +91,11 @@ nav li a:hover {
   .fa-refresh {
     color: green;
   }
+
+  tabel form{
+    display: inline-block;
+  }
+
+  table a{
+    text-decoration: none;
+  }

@@ -1,27 +1,33 @@
 {% extends 'base.html' %}
-
 {% block title %}
 Agregar Categoria 
 {% endblock  %}
 
 {% block content %}
-{% for message in get_flashed_messages() %}
-<p>{{ message }}</p>
-{% endfor %}
+
 <form method="post">
-    <label for="category">Categoria</label>
-    <input type="text" 
-            name="category" 
-            id="category"
-            value="{{ request.form['category'] }}">
-    <br>
-    <label for="description">Descriptión</label>
-    <input type="text" 
-            name="description" 
-            id="description"
-            value="{{ request.form['description'] }}">
-    <br>
-    <input type="submit" value="Guardar" class="btn">
+    {{ form.crsf_token}}
+    <div>
+        {{form.category.label}}
+        {{form.category()}}
+        {% if form.category.errors %}
+            {% for error in form.category.errors%}
+            <p>{{errorr}}</p>
+            {% endfor %}  
+        {% endif %}
+    </div>
+    <div>
+        {{form.description.label}}
+        {{form.description()}}
+        {% if form.description.errors %}
+            {% for error in form.description.errors%}
+            <p>{{errorr}}</p>
+            {% endfor %}  
+        {% endif %}
+    </div>
+    <div>
+        {{form.submit(class="btn")}}
+    </div>
 </form>
-{% endblock content %}
+{% endblock %}
         
