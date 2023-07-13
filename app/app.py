@@ -3,7 +3,7 @@ from flask import Flask
 # Importar vistas
 from views.home_views import home_views
 from views.category_views import category_views
-from views.users_views import user_views
+from views.user_views import user_views
 from views.error_views import error_views
 
 app = Flask(__name__)
