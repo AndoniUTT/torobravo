@@ -7,11 +7,11 @@ class CreateCategoryForm(FlaskForm):
                            validators=[DataRequired()])
     description = TextAreaField('Descripcion',
                                 validators=[DataRequired()])
-    sumit = SubmitField('Guardar')
+    submit = SubmitField('Guardar')
     
 class UpdateCategoryForm(FlaskForm):
     category = StringField('Categoria', 
                            validators=[DataRequired()])
     description = TextAreaField('Descripcion',
                                 validators=[DataRequired()])
-    sumit = SubmitField('Guardar')
+    submit = SubmitField('Guardar')
