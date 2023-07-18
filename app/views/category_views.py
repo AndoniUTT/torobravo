@@ -35,7 +35,6 @@ def update_cat(id):
         return redirect(url_for('category.categories'))
     form.category.data = cat.category
     form.description.data = cat.description
-    
     return render_template('categories/create_cat.html', form=form )
 
 @category_views.route('/categories/<int:id>/delete/', methods=('POST',))

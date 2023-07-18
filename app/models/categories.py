@@ -13,7 +13,7 @@ class Category:
         # Create a New Object in DB
         if self.id is None:
             with mydb.cursor() as cursor:
-                sql = "INSERT INTO categories(category, description) VALUES(%s, %s)"
+                sql = "INSERT INTO categoria_producto(category, description) VALUES(%s, %s)"
                 val = (self.category, self.description)
                 cursor.execute(sql, val)
                 mydb.commit()
@@ -22,7 +22,7 @@ class Category:
         # Update an Object
         else:
             with mydb.cursor() as cursor:
-                sql = "UPDATE categories SET category = %s, description = %s WHERE id = %s"
+                sql = "UPDATE categoria_producto SET category = %s, description = %s WHERE id = %s"
                 val = (self.category, self.description, self.id)
                 cursor.execute(sql, val)
                 mydb.commit()
@@ -30,7 +30,7 @@ class Category:
             
     def delete(self):
         with mydb.cursor() as cursor:
-            sql = f"DELETE FROM categories WHERE id = { self.id }"
+            sql = f"DELETE FROM categoria_producto WHERE id = { self.id }"
             cursor.execute(sql)
             mydb.commit()
             return self.id
@@ -38,7 +38,7 @@ class Category:
     @staticmethod
     def get(id):
         with mydb.cursor(dictionary=True) as cursor:
-            sql = f"SELECT category, description FROM categories WHERE id = { id }"
+            sql = f"SELECT category, description FROM categoria_producto WHERE id = { id }"
             cursor.execute(sql)
             result = cursor.fetchone()
             print(result)
@@ -49,7 +49,7 @@ class Category:
     def get_all():
         categories = []
         with mydb.cursor(dictionary=True) as cursor:
-            sql = f"SELECT id, category, description FROM categories"
+            sql = f"SELECT id, category, description FROM categoria_producto"
             cursor.execute(sql)
             result = cursor.fetchall()
             for item in result:
@@ -59,7 +59,7 @@ class Category:
     @staticmethod
     def count_all():
         with mydb.cursor() as cursor:
-            sql = f"SELECT COUNT(id) FROM categories"
+            sql = f"SELECT COUNT(id) FROM categoria_producto"
             cursor.execute(sql)
             result = cursor.fetchone()
             return result[0]

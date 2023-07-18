@@ -15,6 +15,7 @@
                 <li><a href="{{ url_for('home.about') }}">About</a></li>
                 <li><a href="{{ url_for('home.contact') }}">Contact</a></li>
                 <li><a href="{{ url_for('category.categories') }}">Categories</a></li>
+                <li><a href="{{ url_for('products.products') }}">Products</a></li>
                 {% if user %}
                 <li><a href="#">Logout</a></li>
                 {% else %}
@@ -30,7 +31,7 @@
         {% endblock %}
     </section>
     <footer>
-        <p>Copyrigth @AndoniUTT</p>
+        <p>Copyrigth @UTTEngineer</p>
     </footer>
 </body>
 </html>

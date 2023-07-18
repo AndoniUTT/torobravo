@@ -5,6 +5,6 @@ def get_connection():
         host="localhost",
         user="root",
         password="",
-        database="mydata"
+        database="torobravodb"
     )
     return mydb

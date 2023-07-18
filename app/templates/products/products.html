@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Productos
+{% endblock %}
+    
+{% block content %}
+<h1>Productos Page</h1>
+<h2>Lista de Productos</h2>
+<a href="{{ url_for('product.create_prod') }}" class="btn btn-success">Nuevo Producto</a>
+<table id="categories">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pro in producto %}
+            <tr>
+                <td>{{ pro.id }}</td>
+                <td>{{ pro.name }}</td>
+                <td>{{ pro.price }}</td>
+                <td>{{ pro.stock }}</td>
+                <td>
+                    <a href="{{ url_for('product.update_prod', id=pro.id) }}">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </a> / 
+                    <form method="post" action="{{ url_for('product.delete_prod', id=pro.id) }}">
+                        <button type="submit"
+                            onclick="return confirm('Seguro?')">
+                            <i class="fa fa-trash"></i>
+                        </button>   
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+    
