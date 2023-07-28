@@ -1,35 +1,37 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Productos
+Ingredientes
 {% endblock %}
     
 {% block content %}
-<h1>Productos Page</h1>
-<h2>Lista de Productos</h2>
-<a href="{{ url_for('products.create_prod') }}" class="btn btn-success">Nuevo Producto</a>
-<table id="categories">
+<h1>Ingredientes Page</h1>
+<h2>Inventario de Ingredientes</h2>
+<a href="{{ url_for('ingredients.create_ingre') }}" class="btn btn-success">Nuevo Ingrediente/a>
+<table id="ingredient">
     <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Price</th>
+            <th>Mark</th>
+            <th>Size</th>
             <th>Stock</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        {% for pro in producto %}
+        {% for ing in ingredient %}
             <tr>
-                <td>{{ pro.id }}</td>
-                <td>{{ pro.name }}</td>
-                <td>{{ pro.price }}</td>
-                <td>{{ pro.stock }}</td>
+                <td>{{ ing.id }}</td>
+                <td>{{ ing.name }}</td>
+                <td>{{ ing.marca }}</td>
+                <td>{{ ing.size }}</td>
+                <td>{{ ing.stock }}</td>
                 <td>
-                    <a href="{{ url_for('product.update_prod', id=pro.id) }}">
+                    <a href="{{ url_for('ingredient.update_ingre', id=ing.id) }}">
                         <i class="fa fa-refresh fa-spin"></i>
                     </a> / 
-                    <form method="post" action="{{ url_for('product.delete_prod', id=pro.id) }}">
+                    <form method="post" action="{{ url_for('ingredient.delete_ingre', id=ing.id) }}">
                         <button type="submit"
                             onclick="return confirm('Seguro?')">
                             <i class="fa fa-trash"></i>

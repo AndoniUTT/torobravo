@@ -4,11 +4,11 @@ mydb = get_connection()
 
 class Product:
 
-    def __init__(self, name, description,
+    def __init__(self, name, size,
                  category_id, price=0.0, 
                  stock=10, image="", id=None):
         self.name = name
-        self.description = description
+        self.size = size
         self.price = price
         self.stock = stock
         self.category_id = category_id
@@ -18,9 +18,9 @@ class Product:
     def save(self):
         if self.id != None:
             with mydb.cursor() as cursor:
-                sql = "INSERT INTO products(name, description, price, stock, category_id, image) "
+                sql = "INSERT INTO products(name, size, price, stock, category_id, image) "
                 sql += "VALUES(%s, %s, %s, %s, %s, %s)"
-                val = (self.name, self.description, 
+                val = (self.name, self.size, 
                        self.price, self.stock, 
                        self.category_id, self.image)
                 cursor.execute(sql, val)
@@ -29,9 +29,9 @@ class Product:
                 return self.id
         else:
             with mydb.cursor() as cursor:
-                sql = "UPDATE products SET name = %s, description = %s, price = %s, "
+                sql = "UPDATE products SET name = %s, size = %s, price = %s, "
                 sql += "stock = %s, category_id = %s, image = %s WHERE id = %s"
-                val = (self.name, self.description, 
+                val = (self.name, self.size, 
                        self.price, self.stock, 
                        self.category_id, self.image, self.id)
                 cursor.execute(sql, val)
@@ -53,7 +53,7 @@ class Product:
             product = cursor.fetchone()
             if product:
                 product = Product(name=product["name"],
-                                  description=product["description"],
+                                  size=product["size"],
                                   price=product["price"],
                                   stock=product["stock"],
                                   category_id=product["category_id"],
@@ -72,7 +72,7 @@ class Product:
             result = []
             for product in result:
                 products.append(Product(name=product["name"],
-                                  description=product["description"],
+                                  size=product["size"],
                                   price=product["price"],
                                   stock=product["stock"],
                                   category_id=product["category_id"],
@@ -89,7 +89,7 @@ class Product:
             result = []
             for product in result:
                 products.append(Product(name=product["name"],
-                                  description=product["description"],
+                                  size=product["size"],
                                   price=product["price"],
                                   stock=product["stock"],
                                   category_id=product["category_id"],
@@ -98,4 +98,4 @@ class Product:
             return products
 
     def __str__(self):
-        return f"{ self.name } { self.description }"
+        return f"{ self.name } { self.size }"

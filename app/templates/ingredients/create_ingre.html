@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-Agregar Producto
+Agregar Ingrediene
 {% endblock  %}
 
 {% block content %}
@@ -8,38 +8,38 @@ Agregar Producto
 <form method="post">
     {{ form.crsf_token}}
     <div>
-        {{form.category.label}}
-        {{form.category(placeholder="Nombre")}}
-        {% if form.category.errors %}
-            {% for error in form.category.errors%}
+        {{form.name.label}}
+        {{form.namedient(placeholder="Nombre")}}
+        {% if form.name.errors %}
+            {% for error in form.name.errors%}
             <p>{{errorr}}</p>
             {% endfor %}  
         {% endif %}
     </div>
     <div>
-        {{form.price.label}}
-        {{form.price(placeholder="Precio")}}
-        {% if form.price.errors %}
-            {% for error in form.price.errors%}
+        {{form.marca.label}}
+        {{form.marca(placeholder="Marca")}}
+        {% if form.marca.errors %}
+            {% for error in form.marca.errors%}
+            <p>{{errorr}}</p>
+            {% endfor %}  
+        {% endif %}
+    </div>
+    <div>
+        {{form.size.label}}
+        {{form.size(placeholder="Presentacion")}}
+        {% if form.size.errors %}
+            {% for error in form.size.errors%}
             <p>{{error}}</p>
             {% endfor %}  
         {% endif %}
     </div>
     <div>
-        {{form.id_prom.label}}
-        {{form.id_prom(placeholder="ID Promocion")}}
-        {% if form.id_prom.errors %}
-            {% for error in form.id_prom.errors%}
-            <p>{{errorr}}</p>
-            {% endfor %}  
-        {% endif %}
-    </div>
-    
-    <div>
-        {{form.category_id.label}}
-        {{form.category_id(placeholder="Categoria")}}
-        {% if form.category_id.errors %}
-            {% for error in form.category_id.errors%}
+        {{form.stock.label}}
+        ######################
+        {{form.stock(placeholder="Existencia")}}
+        {% if form.stock.errors %}
+            {% for error in form.stock.errors%}
             <p>{{error}}</p>
             {% endfor %}  
         {% endif %}
