@@ -7,10 +7,10 @@ from forms.product_forms import UpdateProductForm, CreateProductForm
 product_views = Blueprint('product', __name__)
 
 @product_views.route('/products/')
-def producto():
+def products():
     producto = Product.get_all()
     return render_template('products/products.html',
-                           producto=producto)
+                           products=products)
 
 @product_views.route('/products/create/', methods=('GET', 'POST'))
 def create_prod():
