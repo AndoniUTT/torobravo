@@ -4,59 +4,36 @@ Agregar Producto
 {% endblock  %}
 
 {% block content %}
-
-<form method="post">
-    {{ form.crsf_token}}
+<form method="post" enctype="multipart/form-data">
+    {{ form.csrf_token }}
     <div>
-        {{form.category.label}}
-        {{form.category(placeholder="Nombre")}}
-        {% if form.category.errors %}
-            {% for error in form.category.errors%}
-            <p>{{errorr}}</p>
-            {% endfor %}  
-        {% endif %}
+        {{ form.name.label }}
+        {{ form.name() }}
     </div>
     <div>
-        {{form.price.label}}
-        {{form.price(placeholder="Precio")}}
-        {% if form.price.errors %}
-            {% for error in form.price.errors%}
-            <p>{{error}}</p>
-            {% endfor %}  
-        {% endif %}
+        {{ form.price.label }}
+        {{ form.price() }}
     </div>
     <div>
-        {{form.id_prom.label}}
-        {{form.id_prom(placeholder="ID Promocion")}}
-        {% if form.id_prom.errors %}
-            {% for error in form.id_prom.errors%}
-            <p>{{errorr}}</p>
-            {% endfor %}  
-        {% endif %}
-    </div>
-    
-    <div>
-        {{form.category_id.label}}
-        {{form.category_id(placeholder="Categoria")}}
-        {% if form.category_id.errors %}
-            {% for error in form.category_id.errors%}
-            <p>{{error}}</p>
-            {% endfor %}  
-        {% endif %}
+        {{ form.stock.label }}    
+        {{ form.stock() }}
     </div>
     <div>
-        {{form.image.label}}
-        {{form.image()}}
-        {% if form.image.errors %}
-            {% for error in form.image.errors %}
-                <p>{{ error }}</p>
-            {% endfor %}
-        {% endif %}
+        {{ form.size.label }}    
+        {{ form.size() }}
     </div>
     <div>
-        {{form.submit(class="btn btn-success")}}
+        {{ form.category_id.label }}
+        {{ form.category_id() }}
+    </div>
+    {% if image %}
+    <div>
+        <img src="{{ url_for('static', filename='images/products/' + image) }}" alt="" width="200px">
+    </div>
+    {% endif %}
+    <div>
+        {{ form.submit() }}
     </div>
 </form>
-<a href="{{ url_for('product.products') }}" class="btn btn-warning">Regresar</a>
 {% endblock %}
         

@@ -7,7 +7,7 @@ Productos
 {% block content %}
 <h1>Productos Page</h1>
 <h2>Lista de Productos</h2>
-<a href="{{ url_for('product.create_prod') }}" class="btn btn-success">Nuevo Producto</a>
+<a href="{{ url_for('product.create') }}" class="btn">Registrar Nuevo</a>
 <table id="products">
     <thead>
         <tr>
@@ -19,26 +19,31 @@ Productos
         </tr>
     </thead>
     <tbody>
-        {% for pro in producto %}
+        {% for product in products %}
             <tr>
-                <td>{{ pro.id }}</td>
-                <td>{{ pro.name }}</td>
-                <td>{{ pro.price }}</td>
-                <td>{{ pro.stock }}</td>
                 <td>
-                    <a href="{{ url_for('product.update_prod', id=pro.id) }}">
-                        <i class="fa fa-refresh fa-spin"></i>
-                    </a> / 
-                    <form method="post" action="{{ url_for('product.delete_prod', id=pro.id) }}">
-                        <button type="submit"
-                            onclick="return confirm('Seguro?')">
-                            <i class="fa fa-trash"></i>
-                        </button>   
+                    <a href="{{ url_for('product.detail', id=product.id) }}">{{ product.id }}</a>
+                </td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.stock }}</td>
+                <td>
+                    <td>
+                        <a href="{{ url_for('product.update_prod', id=product.id) }}">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <form action="{{ url_for('product.delete', id=product.id) }}">
+                            <button type="submit" onclick="return confirm('Seguro?')">
+                                <i class="fa fa-trash"></i>
+                            </button>
                     </form>
                 </td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
+<hr>
+{% for i in range(pages) %}
+<a href="{{ url_for('product.home', page=(i + 1)) }}">{{ i + 1 }}</a>
+{% endfor %}
 {% endblock %}
-    

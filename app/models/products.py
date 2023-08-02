@@ -97,6 +97,14 @@ class Product:
                                   image=product["image"],
                                   id=product["id"]))
             return products
-
+        
     def __str__(self):
         return f"{ self.name } { self.size }"
+    
+    @staticmethod
+    def count():
+        with mydb.cursor(dictionary=True) as cursor:
+            sql = "SELECT count(id) as total FROM products"
+            cursor.execute(sql)
+            result = cursor.fetchone()
+            return result['total']

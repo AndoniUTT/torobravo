@@ -6,7 +6,11 @@ from flask_wtf.file import FileField, FileAllowed
 from models.categories import Category
 
 class CreateProductForm(FlaskForm):
-    cats=[]
+    
+    categories = Category.get_all()
+    cats = [(-1, '')]
+    for cat in categories:
+        cats.append((cat.id, cat.category))
     
     name = StringField('Nombre', 
                            validators=[DataRequired()])
@@ -32,8 +36,6 @@ class UpdateProductForm(FlaskForm):
 
     name = StringField('Nombre', 
                        validators=[DataRequired()])
-    description = TextAreaField('Descripción', 
-                                validators=[DataRequired()])
     price = FloatField('Precio', 
                        validators=[DataRequired(), NumberRange(min=0.0, max=None)])
     stock = IntegerField('Existencias', 
