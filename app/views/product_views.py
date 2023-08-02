@@ -8,8 +8,8 @@ product_views = Blueprint('product', __name__)
 
 @product_views.route('/products/')
 def products():
-    producto = Product.get_all()
-    return render_template('products/products.html',
+    products = Product.get_all()
+    return render_template('products/product.html',
                            products=products)
 
 @product_views.route('/products/create/', methods=('GET', 'POST'))

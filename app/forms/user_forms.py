@@ -10,6 +10,8 @@ from models.users import User
 class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = EmailField('Email', validators=[DataRequired(), Email()])
+    first_name = StringField('Username', validators=[DataRequired()])
+    last_name = StringField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired(),
                                                     EqualTo('password_confirm', 
                                                             message='Las contraseñas deben coincidir')])

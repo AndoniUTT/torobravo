@@ -68,7 +68,7 @@ class Ingredient:
         with mydb.cursor(dictionary=True) as cursor:
             sql = f"SELECT * FROM ingredients LIMIT { limit } OFFSET { offset }"
             cursor.execute(sql)
-            result = []
+            result = cursor.fetchall()
             for ingredient in result:
                 ingredients.append(Ingredient(name=ingredient["name"],
                                   size=ingredient["size"],

@@ -5,7 +5,26 @@
 {% block content %}
 <h1>Registro</h1>
 <form method="post">
+    #####verificar el comando para registrar nuevos usuarios
     {{ form.csrf_token }}
+    <div>
+        {{ form.first_name.label }}
+        {{ form.first_name() }}
+        {% if form.first_name.errors %}
+            {% for error in form.first_name.errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div>
+        {{ form.last_name.label }}
+        {{ form.last_name() }}
+        {% if form.last_name.errors %}
+            {% for error in form.last_name.errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
     <div>
         {{ form.username.label }}
         {{ form.username() }}

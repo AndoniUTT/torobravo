@@ -4,8 +4,9 @@ mydb = get_connection()
 
 class Product:
 
-    def __init__(self, name, size,
+    def __init__(self, name,
                  category_id, price=0.0, 
+                 size=0,
                  stock=10, image="", id=None):
         self.name = name
         self.size = size
@@ -69,7 +70,7 @@ class Product:
         with mydb.cursor(dictionary=True) as cursor:
             sql = f"SELECT * FROM products LIMIT { limit } OFFSET { offset }"
             cursor.execute(sql)
-            result = []
+            result = cursor.fetchall()
             for product in result:
                 products.append(Product(name=product["name"],
                                   size=product["size"],
@@ -86,7 +87,7 @@ class Product:
         with mydb.cursor(dictionary=True) as cursor:
             sql = f"SELECT * FROM products WHERE category_id = { id_category }"
             cursor.execute(sql)
-            result = []
+            result = cursor.fetchall()
             for product in result:
                 products.append(Product(name=product["name"],
                                   size=product["size"],

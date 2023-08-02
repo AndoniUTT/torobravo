@@ -1,21 +1,47 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms import StringField, TextAreaField, SubmitField, IntegerField, FloatField, SelectField
+from wtforms.validators import DataRequired, NumberRange
+from flask_wtf.file import FileField, FileAllowed
+
+from models.categories import Category
 
 class CreateProductForm(FlaskForm):
+    cats=[]
+    
     name = StringField('Nombre', 
                            validators=[DataRequired()])
-    price = TextAreaField('Precio',
+    price = FloatField('Precio',
+                                validators=[DataRequired(), NumberRange(min=0.0, max=None)])
+    stock = IntegerField('Stock',
+                                validators=[DataRequired(), NumberRange(min=0.0, max=None)])
+    size = IntegerField('Tamaño',
                                 validators=[DataRequired()])
-    stock = StringField('Stock',
-                                validators=[DataRequired()])
+    category_id = SelectField('Categoría',
+                              choices=cats, coerce=int, validate_choice=False, validators=[DataRequired()])
+    image = FileField('Imagen de Producto', 
+                      validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Solo imagenes!')])
     submit = SubmitField('Guardar')
     
+    
 class UpdateProductForm(FlaskForm):
+    
+    # categories = Category.get_all()
+    cats = []
+    # for cat in categories:
+    #     cats.append((cat.id, cat.category))
+
     name = StringField('Nombre', 
-                           validators=[DataRequired()])
-    price = TextAreaField('Precio',
+                       validators=[DataRequired()])
+    description = TextAreaField('Descripción', 
                                 validators=[DataRequired()])
-    stock = StringField('Stock',
-                                validators=[DataRequired()])
-    submit = SubmitField('Guardar')
+    price = FloatField('Precio', 
+                       validators=[DataRequired(), NumberRange(min=0.0, max=None)])
+    stock = IntegerField('Existencias', 
+                         validators=[DataRequired(), NumberRange(min=0, max=None)])
+    size = IntegerField('Tamaño',
+                        validators=[DataRequired()])
+    category_id = SelectField('Categoría', 
+                              choices=cats, coerce=int, validate_choice=False, validators=[DataRequired()])
+    image = FileField('Imagen de Producto', 
+                      validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Solo imagenes!')])
+    submit = SubmitField('Actualizar')
