@@ -52,10 +52,9 @@ class Ingredient:
             ingredient = cursor.fetchone()
             if ingredient:
                 ingredient = Ingredient(name=ingredient["name"],
+                                  marca=ingredient["marca"],
                                   size=ingredient["size"],
-                                  price=ingredient["price"],
                                   stock=ingredient["stock"],
-                                  category_id=ingredient["category_id"],
                                   image=ingredient["image"],
                                   id=ingredient["id"])
                 return ingredient
@@ -71,10 +70,9 @@ class Ingredient:
             result = cursor.fetchall()
             for ingredient in result:
                 ingredients.append(Ingredient(name=ingredient["name"],
+                                  marca=ingredient["marca"],
                                   size=ingredient["size"],
-                                  price=ingredient["price"],
                                   stock=ingredient["stock"],
-                                  category_id=ingredient["category_id"],
                                   image=ingredient["image"],
                                   id=ingredient["id"]))
             return ingredients

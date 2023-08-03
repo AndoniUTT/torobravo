@@ -4,31 +4,32 @@ Agregar Categoria
 {% endblock  %}
 
 {% block content %}
-
-<form method="post">
-    {{ form.crsf_token}}
-    <div>
-        {{form.category.label}}
-        {{form.category(placeholder="Categoria")}}
-        {% if form.category.errors %}
-            {% for error in form.category.errors%}
-            <p>{{errorr}}</p>
-            {% endfor %}  
-        {% endif %}
-    </div>
-    <div>
-        {{form.description.label}}
-        {{form.description()}}
-        {% if form.description.errors %}
-            {% for error in form.description.errors%}
-            <p>{{errorr}}</p>
-            {% endfor %}  
-        {% endif %}
-    </div>
-    <div>
-        {{form.submit(class="btn btn-success")}}
-    </div>
-</form>
+<div class="form-container">
+    <form method="post">
+        {{ form.crsf_token}}
+        <div>
+            {{form.category.label}}
+            {{form.category(placeholder="Categoria")}}
+            {% if form.category.errors %}
+                {% for error in form.category.errors%}
+                <p>{{errorr}}</p>
+                {% endfor %}  
+            {% endif %}
+        </div>
+        <div>
+            {{form.description.label}}
+            {{form.description()}}
+            {% if form.description.errors %}
+                {% for error in form.description.errors%}
+                <p>{{errorr}}</p>
+                {% endfor %}  
+            {% endif %}
+        </div>
+        <div>
+            {{form.submit(class="btn btn-success")}}
+        </div>
+    </form>
+</div>
 <a href="{{ url_for('category.categories') }}" class="btn btn-warning">Regresar</a>
 {% endblock %}
         

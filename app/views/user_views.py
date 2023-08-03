@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, abort
+from flask import Blueprint, render_template, redirect, url_for, flash, abort, session
 
 from models.users import User
 
@@ -34,7 +34,8 @@ def login():
         if not user:
             flash('Verifica tus Datos')
         else:
-            return render_template('home/home.html', user=user)
+            session["user"]= user.username
+            return redirect(url_for('home.home'))
     return render_template('users/login.html', form=form)
 
 @user_views.route('/users/<int:id>/profile/', methods=('GET', 'POST'))

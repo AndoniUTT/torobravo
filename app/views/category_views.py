@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request
+from flask import Blueprint, render_template, redirect, url_for, flash, request, session
 
 from models.categories import Category 
 
@@ -9,8 +9,9 @@ category_views = Blueprint('category', __name__)
 @category_views.route('/categories/')
 def categories():
     categories = Category.get_all()
+    user = session.get("user")
     return render_template('categories/categories.html',
-                           categories=categories)
+                           categories=categories, user=user)
 
 
 @category_views.route('/categories/create/', methods=('GET', 'POST'))

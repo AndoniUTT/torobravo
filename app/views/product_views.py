@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, abort
+from flask import Blueprint, render_template, redirect, url_for, abort, session
 
 from models.products import Product 
 
@@ -18,7 +18,8 @@ def home(page=1):
     products = Product.get_all(limit=limit, page=page)
     total_products = Product.count()
     pages = total_products // limit
-    return render_template('products/product.html', products=products, pages=pages)
+    user = session.get("user")
+    return render_template('products/product.html', products=products, pages=pages, user=user)
 
 @product_views.route('/products/create/', methods=('GET', 'POST'))
 def create():
@@ -29,9 +30,9 @@ def create():
         price = form.price.data
         stock = form.stock.data
         size = form.size.data
-        image = form.image.data
         category_id = form.category_id.data
         f = form.image.data
+        image=""
         if f:
             image = save_image(f, 'images/products')
         product = Product(name=name,
@@ -81,7 +82,7 @@ def detail(id):
     product = Product.get(id)
     if product is None: abort(404)
     cat = Category.get(product.category_id)
-    return render_template('product/detail.html', product=product, cat=cat)
+    return render_template('products/details.html', product=product, cat=cat)
 
 @product_views.route('/product/<int:id>/delete/', methods=['POST'])
 def delete(id):

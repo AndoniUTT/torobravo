@@ -7,26 +7,28 @@ Ingredientes
 {% block content %}
 <h1>Ingredientes Page</h1>
 <h2>Inventario de Ingredientes</h2>
-<a href="{{ url_for('ingredient.create_ingre') }}" class="btn btn-success">Nuevo Ingrediente/a>
+<a href="{{ url_for('ingredient.create_ingre') }}" class="btn btn-success">Nuevo Ingrediente</a>
 <table id="ingredients">
     <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Mark</th>
-            <th>Size</th>
+            <th>Precio</th>
             <th>Stock</th>
+            <th>Marca</th>
+            <th>Size</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        {% for ing in ingredient %}
+        {% for ing in ingredients %}
             <tr>
                 <td>{{ ing.id }}</td>
                 <td>{{ ing.name }}</td>
+                <td>{{ ing.price }}</td>
+                <td>{{ ing.stock }}</td>
                 <td>{{ ing.marca }}</td>
                 <td>{{ ing.size }}</td>
-                <td>{{ ing.stock }}</td>
                 <td>
                     <a href="{{ url_for('ingredient.update_ingre', id=ing.id) }}">
                         <i class="fa fa-refresh fa-spin"></i>

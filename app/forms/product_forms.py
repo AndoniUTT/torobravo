@@ -22,7 +22,7 @@ class CreateProductForm(FlaskForm):
                                 validators=[DataRequired()])
     category_id = SelectField('Categoría',
                               choices=cats, coerce=int, validate_choice=False, validators=[DataRequired()])
-    image = FileField('Imagen de Producto', 
+    image = FileField('Imagen de Ingrediente', 
                       validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Solo imagenes!')])
     submit = SubmitField('Guardar')
     
@@ -44,6 +44,6 @@ class UpdateProductForm(FlaskForm):
                         validators=[DataRequired()])
     category_id = SelectField('Categoría', 
                               choices=cats, coerce=int, validate_choice=False, validators=[DataRequired()])
-    image = FileField('Imagen de Producto', 
+    image = FileField('Imagen de Ingrediente', 
                       validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Solo imagenes!')])
     submit = SubmitField('Actualizar')

@@ -9,7 +9,7 @@ Agregar Ingrediene
     {{ form.crsf_token}}
     <div>
         {{form.name.label}}
-        {{form.namedient(placeholder="Nombre")}}
+        {{form.name(placeholder="Nombre")}}
         {% if form.name.errors %}
             {% for error in form.name.errors%}
             <p>{{errorr}}</p>
