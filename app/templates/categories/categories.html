@@ -5,7 +5,7 @@ Categorias
 {% endblock %}
     
 {% block content %}
-<h1>Categories Page</h1>
+<h1>Categorias del Bar</h1>
 <h2>Lista de Categorias</h2>
 <a href="{{ url_for('category.create_cat') }}" class="btn btn-success">Nueva Categoria</a>
 <table id="categories">
@@ -26,7 +26,7 @@ Categorias
                 <td>
                     <a href="{{ url_for('category.update_cat', id=cat.id) }}">
                         <i class="fa fa-refresh fa-spin"></i>
-                    </a> / 
+                    </a>/ 
                     <form method="post" action="{{ url_for('category.delete_cat', id=cat.id) }}">
                         <button type="submit"
                             onclick="return confirm('Seguro?')">

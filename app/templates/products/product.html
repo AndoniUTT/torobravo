@@ -5,9 +5,9 @@ Productos
 {% endblock %}
     
 {% block content %}
-<h1>Productos Page</h1>
+<h1>Productos del Bar</h1>
 <h2>Lista de Productos</h2>
-<a href="{{ url_for('product.create') }}" class="btn">Registrar Nuevo</a>
+<a href="{{ url_for('product.create') }}" class="custom-btn">Registrar Nuevo</a>
 <table id="products">
     <thead>
         <tr>
@@ -15,7 +15,7 @@ Productos
             <th>Nombre</th>
             <th>Precio</th>
             <th>Existencias</th>
-            <th>Acciones</th>
+            <th>Acciones</th> 
         </tr>
     </thead>
     <tbody>
@@ -44,6 +44,5 @@ Productos
 </table>
 <hr>
 {% for i in range(pages) %}
-<a href="{{ url_for('product.home', page=(i + 1)) }}">{{ i + 1 }}</a>
 {% endfor %}
 {% endblock %}

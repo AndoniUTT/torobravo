@@ -1,28 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bar-Restaurante Toro Bravo Food & Drinks</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <header>
-        <nav>
+        <nav class="navbar">
             <ul>
-                <li><a href="{{ url_for('home.home') }}">Home</a></li>
-                <li><a href="{{ url_for('home.about') }}">About</a></li>
-                <li><a href="{{ url_for('home.contact') }}">Contact</a></li>
-                {% if user %}
-                <li><a href="{{ url_for('category.categories') }}">Categories</a></li>
-                <li><a href="{{ url_for('product.home') }}">Products</a></li>
-                <li><a href="{{ url_for('ingredient.ingredients') }}">Inventario</a></li>
-                <li><a href="#">Logout</a></li>
-                {% else %}
-                <li><a href="{{url_for('user.login')}}">Login</a></li>
+              <li class="logo">
+                <a href="{{ url_for('home.home') }}"><img src="{{ url_for('static', filename='images/descarga.png') }}" width="100px" height="100px" alt="Logo Toro Bravo"></a>
+            <ul>
+                <li><a href="{{ url_for('home.home') }}">Inicio</a></li>
                 <li><a href="{{url_for('user.register')}}">Registro</a></li>
-                {% endif %}
+                <li><a href="{{url_for('user.login')}}">Iniciar Sesión</a></li>
+                <li><a href="{{ url_for('product.home') }}">Productos</a></li>
+                <li><a href="{{ url_for('category.categories') }}">Categorias</a></li>
+                <li><a href="{{ url_for('ingredient.ingredients') }}">Inventario</a></li>
+                <li><a href="{{ url_for('home.about') }}">Acerca de</a></li>
+                <li><a href="{{ url_for('home.contact') }}">Contacto</a></li>
+                <li><a href="#">Logout</a></li>
+           
+               
+                
+            
             </ul>
         </nav>
     </header>
@@ -32,7 +39,20 @@
         {% endblock %}
     </section>
     <footer>
-        <p>Copyrigth @UTTEngineer</p>
-    </footer>
-</body>
-</html>
+        <div class="social-media">
+          <a href=""><img src="{{ url_for('static', filename='images/descarga1.png') }}" alt="Facebook"></a>
+          <a href=""><img src="{{ url_for('static', filename='images/instagram.png') }}" alt="Instagram"></a>
+          <a href=""><img src="{{ url_for('static', filename='images/twitter.png') }}" alt="Twitter"></a>
+          <a href=""><img src="{{ url_for('static', filename='images/whatsapp.png') }}" alt="Whastapp"></a>
+    
+        </div>
+        <p>Teléfonos:
+          <ul style="display: inline-block; padding-left: 0;">
+            <li>2411002334</li>
+          </ul>
+         <p>
+          Email: <a href=""></a>
+         </p>
+        </p>
+        <p>&copy; 2023 Todos los derechos reservados Bar-Restaurante Toro Bravo</p>
+      </footer>
